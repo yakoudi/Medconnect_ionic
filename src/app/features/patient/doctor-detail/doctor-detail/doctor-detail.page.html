@@ -1,0 +1,98 @@
+<app-header [title]="'Dr. ' + (doctor?.firstName || '')" [showBackButton]="true"></app-header>
+
+<ion-content>
+  <div class="loading-container" *ngIf="loading">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div *ngIf="!loading && doctor" class="ion-padding">
+    <!-- En-tête du profil -->
+    <ion-card class="doctor-profile-card">
+      <ion-card-content>
+        <div class="profile-header">
+          <ion-avatar class="large-avatar">
+            <img [src]="doctor.photoURL || 'assets/avatar-placeholder.png'" alt="Photo médecin">
+          </ion-avatar>
+          <div class="profile-info">
+            <h1>Dr. {{ doctor.firstName }} {{ doctor.lastName }}</h1>
+            <p class="speciality">{{ doctor.speciality }}</p>
+            <ion-chip color="success" *ngIf="doctor.verified">
+              <ion-icon name="star-outline"></ion-icon>
+              <ion-label>Vérifié</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Informations -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Informations</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-icon name="location-outline" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Adresse</h3>
+              <p>{{ doctor.address || 'Non spécifié' }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="cash-outline" slot="start" color="success"></ion-icon>
+            <ion-label>
+              <h3>Tarif consultation</h3>
+              <p>{{ doctor.consultationFee }} TND</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="call-outline" slot="start" color="tertiary"></ion-icon>
+            <ion-label>
+              <h3>Téléphone</h3>
+              <p>{{ doctor.phone }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>
+              <h3>Email</h3>
+              <p>{{ doctor.email }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Biographie -->
+    <ion-card *ngIf="doctor.bio">
+      <ion-card-header>
+        <ion-card-title>À propos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ doctor.bio }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Horaires -->
+    <ion-card *ngIf="doctor.availableHours && doctor.availableHours.length > 0">
+      <ion-card-header>
+        <ion-card-title>Horaires disponibles</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-chip *ngFor="let hour of doctor.availableHours" color="primary">
+          <ion-icon name="time-outline"></ion-icon>
+          <ion-label>{{ hour }}</ion-label>
+        </ion-chip>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Bouton de prise de RDV -->
+    <ion-button expand="block" size="large" (click)="bookAppointment()" class="book-button">
+      Prendre rendez-vous
+    </ion-button>
+  </div>
+</ion-content>

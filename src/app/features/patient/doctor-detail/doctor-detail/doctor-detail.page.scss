@@ -1,0 +1,64 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.doctor-profile-card {
+  background: linear-gradient(135deg, var(--ion-color-primary) 0%, var(--ion-color-primary-shade) 100%);
+  color: white;
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .large-avatar {
+      width: 80px;
+      height: 80px;
+      border: 3px solid white;
+    }
+
+    .profile-info {
+      flex: 1;
+
+      h1 {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0 0 5px 0;
+        color: white;
+      }
+
+      .speciality {
+        font-size: 16px;
+        margin: 0 0 10px 0;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+ion-list {
+  background: transparent;
+
+  ion-item {
+    --background: transparent;
+    margin-bottom: 10px;
+
+    h3 {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+.book-button {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}

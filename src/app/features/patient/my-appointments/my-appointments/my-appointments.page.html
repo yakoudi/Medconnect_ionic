@@ -1,0 +1,32 @@
+<app-header title="Mes rendez-vous" [showBackButton]="true"></app-header>
+
+<ion-content>
+  <ion-segment [value]="selectedSegment" (ionChange)="onSegmentChange($event)">
+    <ion-segment-button value="upcoming">
+      <ion-label>À venir</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="past">
+      <ion-label>Historique</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="loading-container" *ngIf="loading">
+    <ion-spinner></ion-spinner>
+    <p>Chargement...</p>
+  </div>
+
+  <div class="appointments-list ion-padding" *ngIf="!loading">
+    <div *ngIf="filteredAppointments.length === 0" class="no-appointments">
+      <p *ngIf="selectedSegment === 'upcoming'">Aucun rendez-vous à venir</p>
+      <p *ngIf="selectedSegment === 'past'">Aucun rendez-vous passé</p>
+    </div>
+
+    <app-appointment-card
+      *ngFor="let appointment of filteredAppointments"
+      [appointment]="appointment"
+      [doctorName]="doctorNames[appointment.doctorId]"
+      [showActions]="selectedSegment === 'upcoming'"
+      (cancel)="cancelAppointment(appointment)">
+    </app-appointment-card>
+  </div>
+</ion-content>

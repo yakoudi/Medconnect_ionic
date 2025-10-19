@@ -1,0 +1,85 @@
+<app-header title="Prendre rendez-vous" [showBackButton]="true"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="doctor">
+    <ion-card-header>
+      <ion-card-title>Dr. {{ doctor.firstName }} {{ doctor.lastName }}</ion-card-title>
+      <p>{{ doctor.speciality }}</p>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Détails du rendez-vous</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #appointmentForm="ngForm" (ngSubmit)="bookAppointment()">
+        
+        <!-- Date -->
+        <ion-item>
+          <ion-label position="stacked">Date *</ion-label>
+          <ion-input
+            type="date"
+            [(ngModel)]="selectedDate"
+            name="date"
+            [min]="minDate"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <!-- Heure -->
+        <ion-item>
+          <ion-label position="stacked">Heure *</ion-label>
+          <ion-select 
+            [(ngModel)]="selectedTime" 
+            name="time"
+            placeholder="Choisir une heure"
+            interface="popover"
+            required>
+            <ion-select-option *ngFor="let time of timeSlots" [value]="time">
+              {{ time }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Motif -->
+        <ion-item>
+          <ion-label position="stacked">Motif de consultation *</ion-label>
+          <ion-input
+            [(ngModel)]="reason"
+            name="reason"
+            placeholder="Ex: Consultation générale"
+            required>
+          </ion-input>
+        </ion-item>
+
+        <!-- Notes -->
+        <ion-item>
+          <ion-label position="stacked">Notes (optionnel)</ion-label>
+          <ion-textarea
+            [(ngModel)]="notes"
+            name="notes"
+            rows="4"
+            placeholder="Informations complémentaires...">
+          </ion-textarea>
+        </ion-item>
+
+        <!-- Tarif -->
+        <div class="fee-info" *ngIf="doctor">
+          <p><strong>Tarif de la consultation :</strong> {{ doctor.consultationFee }} TND</p>
+        </div>
+
+        <!-- Bouton -->
+        <ion-button 
+          expand="block" 
+          type="submit"
+          size="large"
+          [disabled]="!appointmentForm.valid"
+          class="ion-margin-top">
+          Confirmer le rendez-vous
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,60 @@
+<app-header title="Accueil Patient"></app-header>
+
+<ion-content class="ion-padding">
+  <div class="welcome-section">
+    <h1>Bonjour {{ patientName }} 👋</h1>
+    <p>Comment pouvons-nous vous aider aujourd'hui ?</p>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card button [routerLink]="['/patient/doctor-list']">
+          <ion-card-header>
+            <ion-icon name="search-outline" color="primary"></ion-icon>
+            <ion-card-title>Trouver un médecin</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Recherchez et prenez rendez-vous avec un spécialiste
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button [routerLink]="['/patient/my-appointments']">
+          <ion-card-header>
+            <ion-icon name="calendar-outline" color="success"></ion-icon>
+            <ion-card-title>Mes rendez-vous</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultez et gérez vos rendez-vous
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button [routerLink]="['/patient/profile']">
+          <ion-card-header>
+            <ion-icon name="person-outline" color="tertiary"></ion-icon>
+            <ion-card-title>Mon profil</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Gérez vos informations personnelles
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button>
+          <ion-card-header>
+            <ion-icon name="document-text-outline" color="warning"></ion-icon>
+            <ion-card-title>Mon dossier médical</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Accédez à votre historique médical
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

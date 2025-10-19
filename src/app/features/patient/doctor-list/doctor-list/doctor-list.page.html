@@ -1,0 +1,40 @@
+<app-header title="Trouver un médecin" [showBackButton]="true"></app-header>
+
+<ion-content>
+  <div class="filters-section ion-padding">
+    <ion-searchbar 
+      placeholder="Rechercher un médecin"
+      (ionInput)="onSearchChange($event)"
+      debounce="300">
+    </ion-searchbar>
+
+    <ion-item>
+      <ion-label>Spécialité</ion-label>
+      <ion-select 
+        [(ngModel)]="selectedSpeciality" 
+        (ionChange)="onSpecialityChange()"
+        interface="popover">
+        <ion-select-option value="all">Toutes les spécialités</ion-select-option>
+        <ion-select-option *ngFor="let spec of specialities" [value]="spec">
+          {{ spec }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div class="doctors-list ion-padding" *ngIf="!loading">
+    <div *ngIf="filteredDoctors.length === 0" class="no-results">
+      <p>Aucun médecin trouvé</p>
+    </div>
+
+    <app-doctor-card 
+      *ngFor="let doctor of filteredDoctors" 
+      [doctor]="doctor">
+    </app-doctor-card>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <ion-spinner></ion-spinner>
+    <p>Chargement des médecins...</p>
+  </div>
+</ion-content>

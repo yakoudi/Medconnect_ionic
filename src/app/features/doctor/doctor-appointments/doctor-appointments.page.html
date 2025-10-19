@@ -1,0 +1,63 @@
+// src/app/features/doctor/doctor-appointments/doctor-appointments.page.scss
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 40px;
+  
+  ion-spinner {
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+.no-appointments {
+  text-align: center;
+  padding: 60px 20px;
+  
+  ion-icon {
+    margin-bottom: 20px;
+    opacity: 0.5;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+.appointments-list {
+  padding-bottom: 20px;
+  
+  app-appointment-card {
+    margin-bottom: 16px;
+    display: block;
+  }
+}
+
+// Personnalisation des segments
+ion-segment {
+  margin: 10px 16px;
+  
+  ion-segment-button {
+    font-size: 14px;
+    
+    ion-badge {
+      margin-left: 6px;
+      font-size: 12px;
+    }
+  }
+}
+
+// Animation du refresher
+ion-refresher {
+  z-index: 10;
+}

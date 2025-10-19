@@ -1,0 +1,78 @@
+<ion-content class="ion-padding">
+  <div *ngIf="!loading && patient">
+    <!-- Photo de profil -->
+    <div class="profile-header ion-text-center">
+      <ion-avatar style="width: 120px; height: 120px; margin: 0 auto 20px;">
+        <img [src]="patient.photoURL || 'assets/default-avatar.png'" alt="Photo de profil">
+      </ion-avatar>
+      <h2>{{ patient.firstName }} {{ patient.lastName }}</h2>
+      <p>{{ patient.email }}</p>
+    </div>
+
+    <!-- Informations personnelles -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Informations personnelles</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Prénom</ion-label>
+          <ion-input 
+            type="text" 
+            [(ngModel)]="patient.firstName"
+            placeholder="Votre prénom">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input 
+            type="text" 
+            [(ngModel)]="patient.lastName"
+            placeholder="Votre nom">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Téléphone</ion-label>
+          <ion-input 
+            type="tel" 
+            [(ngModel)]="patient.phone"
+            placeholder="+216 XX XXX XXX">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Adresse</ion-label>
+          <ion-input 
+            type="text" 
+            [(ngModel)]="patient.address"
+            placeholder="Votre adresse">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Date de naissance</ion-label>
+          <ion-input 
+            type="text" 
+            [value]="patient.dateOfBirth | date:'dd/MM/yyyy'"
+            readonly>
+          </ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Bouton de mise à jour -->
+    <ion-button 
+      expand="block" 
+      (click)="updateProfile()"
+      class="ion-margin-top">
+      Mettre à jour
+    </ion-button>
+  </div>
+
+  <div *ngIf="loading" class="ion-text-center ion-padding">
+    <p>Chargement du profil...</p>
+  </div>
+</ion-content>

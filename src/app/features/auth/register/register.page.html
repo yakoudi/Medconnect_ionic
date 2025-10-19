@@ -1,0 +1,239 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Inscription - MediConnect</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="register-container">
+    
+    <!-- Titre -->
+    <div class="header-section">
+      <h1>Créer un compte</h1>
+      <p>Rejoignez MediConnect aujourd'hui</p>
+    </div>
+
+    <!-- Formulaire -->
+    <form #registerForm="ngForm" (ngSubmit)="register()">
+      
+      <!-- Choix du rôle -->
+      <ion-list>
+        <ion-item>
+          <ion-label>Je suis</ion-label>
+          <ion-select [(ngModel)]="role" name="role" interface="popover">
+            <ion-select-option value="patient">
+              <ion-icon name="person-circle"></ion-icon>
+              Patient
+            </ion-select-option>
+            <ion-select-option value="doctor">
+              <ion-icon name="medkit"></ion-icon>
+              Médecin
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <!-- Carte pour les informations personnelles -->
+      <ion-card>
+        <ion-card-content>
+          <h3>Informations personnelles</h3>
+          
+          <ion-item>
+            <ion-label position="floating">Prénom *</ion-label>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="firstName" 
+              name="firstName" 
+              required
+              placeholder="Jean">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Nom *</ion-label>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="lastName" 
+              name="lastName" 
+              required
+              placeholder="Dupont">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email *</ion-label>
+            <ion-input 
+              type="email" 
+              [(ngModel)]="email" 
+              name="email" 
+              required
+              placeholder="jean.dupont@email.com">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Téléphone *</ion-label>
+            <ion-input 
+              type="tel" 
+              [(ngModel)]="phone" 
+              name="phone" 
+              required
+              placeholder="+216 XX XXX XXX">
+            </ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Carte pour les informations spécifiques PATIENT -->
+      <ion-card *ngIf="role === 'patient'">
+        <ion-card-content>
+          <h3>Informations patient</h3>
+          
+          <ion-item>
+            <ion-label position="floating">Date de naissance *</ion-label>
+            <ion-input 
+              type="date" 
+              [(ngModel)]="dateOfBirth" 
+              name="dateOfBirth" 
+              required>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Adresse *</ion-label>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="address" 
+              name="address" 
+              required
+              placeholder="123 Rue de la Santé, Tunis">
+            </ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Carte pour les informations spécifiques MÉDECIN -->
+      <ion-card *ngIf="role === 'doctor'">
+        <ion-card-content>
+          <h3>Informations professionnelles</h3>
+          
+          <ion-item>
+            <ion-label position="floating">Spécialité *</ion-label>
+            <ion-select 
+              [(ngModel)]="speciality" 
+              name="speciality" 
+              interface="popover"
+              placeholder="Choisir">
+              <ion-select-option value="Médecine générale">Médecine générale</ion-select-option>
+              <ion-select-option value="Cardiologie">Cardiologie</ion-select-option>
+              <ion-select-option value="Dermatologie">Dermatologie</ion-select-option>
+              <ion-select-option value="Pédiatrie">Pédiatrie</ion-select-option>
+              <ion-select-option value="Gynécologie">Gynécologie</ion-select-option>
+              <ion-select-option value="Orthopédie">Orthopédie</ion-select-option>
+              <ion-select-option value="Neurologie">Neurologie</ion-select-option>
+              <ion-select-option value="Psychiatrie">Psychiatrie</ion-select-option>
+              <ion-select-option value="Ophtalmologie">Ophtalmologie</ion-select-option>
+              <ion-select-option value="ORL">ORL</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Numéro d'ordre *</ion-label>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="registrationNumber" 
+              name="registrationNumber" 
+              required
+              placeholder="12345">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Tarif consultation (TND) *</ion-label>
+            <ion-input 
+              type="number" 
+              [(ngModel)]="consultationFee" 
+              name="consultationFee" 
+              required
+              min="0"
+              placeholder="50">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Adresse du cabinet</ion-label>
+            <ion-input 
+              type="text" 
+              [(ngModel)]="address" 
+              name="addressDoctor" 
+              placeholder="123 Avenue Habib Bourguiba, Tunis">
+            </ion-input>
+          </ion-item>
+
+          <ion-text color="warning" class="ion-padding">
+            <p><small>⚠️ Votre compte devra être vérifié par un administrateur avant de pouvoir recevoir des patients.</small></p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Carte pour le mot de passe -->
+      <ion-card>
+        <ion-card-content>
+          <h3>Sécurité</h3>
+          
+          <ion-item>
+            <ion-label position="floating">Mot de passe *</ion-label>
+            <ion-input 
+              type="password" 
+              [(ngModel)]="password" 
+              name="password" 
+              required
+              minlength="6"
+              placeholder="••••••••">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Confirmer mot de passe *</ion-label>
+            <ion-input 
+              type="password" 
+              [(ngModel)]="confirmPassword" 
+              name="confirmPassword" 
+              required
+              placeholder="••••••••">
+            </ion-input>
+          </ion-item>
+
+          <ion-text color="medium">
+            <p><small>Le mot de passe doit contenir au moins 6 caractères</small></p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Bouton d'inscription -->
+      <ion-button 
+        expand="block" 
+        type="submit" 
+        [disabled]="!isFormValid()"
+        size="large"
+        class="ion-margin-top">
+        S'inscrire
+      </ion-button>
+    </form>
+
+    <!-- Lien connexion -->
+    <div class="links ion-text-center ion-margin-top">
+      <p>
+        Vous avez déjà un compte ? 
+        <a routerLink="/login">Se connecter</a>
+      </p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <ion-card *ngIf="errorMessage" color="danger" class="ion-margin-top">
+      <ion-card-content>
+        {{ errorMessage }}
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

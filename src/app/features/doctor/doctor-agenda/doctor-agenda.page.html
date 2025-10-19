@@ -1,0 +1,56 @@
+<!-- src/app/features/doctor/doctor-agenda/doctor-agenda.page.html -->
+<app-header title="Mon Agenda" [showBackButton]="true"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="time-outline"></ion-icon>
+        Horaires de disponibilité
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p class="ion-text-center ion-margin-bottom">
+        Sélectionnez vos horaires disponibles pour les consultations
+      </p>
+
+      <ion-list>
+        <ion-item *ngFor="let slot of allTimeSlots">
+          <ion-checkbox
+            [(ngModel)]="slot.selected"
+            (ionChange)="onTimeSlotChange()">
+          </ion-checkbox>
+          <ion-label class="ion-margin-start">{{ slot.time }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-button 
+        expand="block" 
+        (click)="saveAvailability()"
+        class="ion-margin-top"
+        [disabled]="!hasChanges">
+        Enregistrer les modifications
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Horaires actuels</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div *ngIf="selectedSlots.length === 0" class="ion-text-center">
+        <p class="ion-text-color-medium">Aucun horaire sélectionné</p>
+      </div>
+
+      <div *ngIf="selectedSlots.length > 0">
+        <ion-chip *ngFor="let time of selectedSlots" color="primary">
+          <ion-icon name="time-outline"></ion-icon>
+          <ion-label>{{ time }}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

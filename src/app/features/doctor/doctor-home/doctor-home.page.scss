@@ -1,0 +1,148 @@
+// src/app/features/doctor/doctor-home/doctor-home.page.scss
+.welcome-section {
+  text-align: center;
+  margin: 20px 0 30px;
+
+  h1 {
+    font-size: 28px;
+    color: var(--ion-color-primary);
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+.stat-card {
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+
+  ion-card-content {
+    padding: 20px;
+
+    ion-icon {
+      margin-bottom: 10px;
+      font-size: 40px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 10px 0 5px;
+      color: var(--ion-color-dark);
+    }
+
+    p {
+      color: var(--ion-color-medium);
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+ion-card[button] {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  &[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+ion-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+
+  ion-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+
+  ion-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    font-size: 18px;
+    font-weight: 600;
+
+    ion-badge {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  }
+}
+
+ion-card-content {
+  padding: 0 16px 16px 16px;
+  color: var(--ion-color-medium);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .welcome-section h1 {
+    font-size: 24px;
+  }
+
+  ion-card-header {
+    ion-icon {
+      font-size: 28px;
+    }
+
+    ion-card-title {
+      font-size: 16px;
+    }
+  }
+
+  .stat-card ion-card-content {
+    padding: 16px;
+
+    ion-icon {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 28px;
+    }
+  }
+}
+
+// Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.welcome-section,
+ion-grid,
+ion-card {
+  animation: fadeIn 0.5s ease-out;
+}

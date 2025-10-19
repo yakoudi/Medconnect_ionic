@@ -1,0 +1,7 @@
+{
+  "name": "mediconnectprojet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

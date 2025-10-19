@@ -1,0 +1,25 @@
+// src/app/features/doctor/doctor-agenda/doctor-agenda.page.scss
+ion-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+ion-chip {
+  margin: 4px;
+}
+
+ion-list {
+  ion-item {
+    --padding-start: 0;
+    margin-bottom: 8px;
+
+    ion-checkbox {
+      margin-right: 12px;
+    }
+  }
+}

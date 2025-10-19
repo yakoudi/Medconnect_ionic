@@ -1,0 +1,100 @@
+<!-- src/app/features/doctor/doctor-home/doctor-home.page.html -->
+<app-header title="Espace Médecin"></app-header>
+
+<ion-content class="ion-padding">
+  <div class="welcome-section">
+    <h1>Bienvenue Dr. {{ doctorName }} 👨‍⚕️</h1>
+    <p>Tableau de bord médecin</p>
+  </div>
+
+  <!-- Statistiques rapides -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="stat-card">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="calendar-outline" color="primary" size="large"></ion-icon>
+            <h2>{{ pendingAppointments }}</h2>
+            <p>En attente</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card class="stat-card">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="checkmark-circle-outline" color="success" size="large"></ion-icon>
+            <h2>{{ confirmedAppointments }}</h2>
+            <p>Confirmés</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Actions rapides -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card button [routerLink]="['/doctor/appointments']">
+          <ion-card-header>
+            <ion-icon name="calendar-outline" color="primary"></ion-icon>
+            <ion-card-title>
+              Mes rendez-vous
+              <ion-badge *ngIf="pendingAppointments > 0" color="warning">
+                {{ pendingAppointments }}
+              </ion-badge>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultez et gérez vos rendez-vous
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button [routerLink]="['/doctor/agenda']">
+          <ion-card-header>
+            <ion-icon name="time-outline" color="success"></ion-icon>
+            <ion-card-title>Mon agenda</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Gérez vos horaires de disponibilité
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button [routerLink]="['/doctor/profile']">
+          <ion-card-header>
+            <ion-icon name="person-outline" color="tertiary"></ion-icon>
+            <ion-card-title>Mon profil</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Modifiez vos informations professionnelles
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <ion-card button disabled>
+          <ion-card-header>
+            <ion-icon name="stats-chart-outline" color="warning"></ion-icon>
+            <ion-card-title>Statistiques</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Consultez vos statistiques (bientôt disponible)
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Statut du compte -->
+  <ion-card *ngIf="!verified" color="warning">
+    <ion-card-content class="ion-text-center">
+      <p><strong>⚠️ Votre compte est en attente de vérification</strong></p>
+      <p>Un administrateur doit valider votre compte avant que vous puissiez recevoir des patients.</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
